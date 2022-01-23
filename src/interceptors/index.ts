@@ -1,1 +1,1 @@
-export * from './main.interceptor';
+export * from './global.interceptor';

@@ -1,4 +1,4 @@
-import { ExpressMiddlewareInterface, Middleware } from 'routing-controllers';
+import {ExpressMiddlewareInterface, Middleware} from 'routing-controllers';
 
 @Middleware({type: 'after'})
 export class LogAfterMiddleware implements ExpressMiddlewareInterface {

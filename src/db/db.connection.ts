@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { getConnectionClusterUrl } from './db.config';
+import {getConnectionClusterUrl} from './db.config';
 
 export const start = async (callback?: (...args) => void) => {
   try {
