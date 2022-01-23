@@ -1,1 +1,19 @@
-<h3>Users</h3>
+<div class="container">
+    <h3>Users</h3>
+
+    {{#if users.length}}
+    {{#each users as |user|}}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">First name</h5>
+                <h4 class="card-title">{{user.firstName}}</h4>
+
+                <h5 class="card-title">Last name</h5>
+                <h4 class="card-title">{{user.lastName}}</h4>
+            </div>
+        </div>
+    {{/each}}
+    {{else}}
+    <h1 class="h1">No user created</h1>
+    {{/if}}
+</div>

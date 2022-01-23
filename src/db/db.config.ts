@@ -1,6 +1,16 @@
-export const DB_CREDENTIALS = {
-  clusterName: 'test-cluster-user',
-  password: 'Sergpolo13135',
+import {ConnectOptions} from "mongodb";
+import dotenv from 'dotenv';
+
+type DbConfig = Partial<ConnectOptions> & {
+  [k: string]: any;
 };
 
-export const getConnectionClusterUrl = () => `mongodb+srv://${DB_CREDENTIALS.clusterName}:${DB_CREDENTIALS.password}@clustertestdb.zamtj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+dotenv.config();
+
+export const DB_CONFIG: DbConfig = {
+  clusterName: process.env.CLUSTER_NAME || 'test-cluster-user',
+  password: process.env.DB_PASS,
+  dbName: process.env.DB_NAME || 'db-selfeducation',
+};
+
+export const getConnectionClusterUrl = () => `mongodb+srv://${DB_CONFIG.clusterName}:${DB_CONFIG.password}@clustertestdb.zamtj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;

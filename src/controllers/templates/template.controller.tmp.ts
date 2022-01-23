@@ -1,13 +1,22 @@
-import {Controller, Get, Render} from 'routing-controllers';
+import {Get, JsonController, Render} from 'routing-controllers';
 import 'reflect-metadata';
+import {TemplateData} from "../../entities/TemplateData";
+import {templateModel} from "../../db/models";
+import {TemplateUtils} from "./utils";
+import {ENavBar} from "../../entities/NavBarMetaData";
 
-@Controller()
+@JsonController()
 export class TemplateControllerTmp {
   @Get('/')
   @Render('pages/index.hbs')
-  public getIndexTmp() {
+  public async getIndexTmp(): Promise<TemplateData> {
+    const templates = await templateModel.find({});
+    const navBarMetadata = TemplateUtils.setActiveByName(ENavBar.TEMPLATES);
+
     return {
-      title: 'Templates',
+      title: ENavBar.TEMPLATES,
+      templates,
+      navBarMetadata,
     };
   }
 }

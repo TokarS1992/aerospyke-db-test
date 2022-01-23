@@ -11,13 +11,24 @@ import * as interceptors from './interceptors';
 import {expressServerOptions} from './server.config';
 
 dotenv.config();
+const app = express();
+const expressHbs = create({
+    defaultLayout: 'main',
+    extname: 'hbs'
+});
+
+app.engine('hbs', expressHbs.engine);
+app.set('view engine', 'hbs');
+app.set('views', 'views');
+
+app.use(bodyParser.json());
+app.use(httpContext.middleware);
+app.use(express.urlencoded({extended: true}));
 
 (async () => {
     await start(() => {
-        const defaultPort = 3001;
-        const expressApp = express();
-
-        const app = useExpressServer<Express>(expressApp, {
+        const port = process.env.PORT || 3001;
+        useExpressServer<Express>(app, {
             ...expressServerOptions,
             controllers: [
                 controllers.TemplateControllerTmp,
@@ -32,23 +43,7 @@ dotenv.config();
             interceptors: [
                 interceptors.GlobalInterceptor,
             ],
-        });
-
-        const expressHbs = create({
-            defaultLayout: 'main',
-            extname: 'hbs'
-        });
-
-        app.engine('hbs', expressHbs.engine);
-        app.set('view engine', 'hbs');
-        app.set('views', 'views');
-
-        app.use(bodyParser.json());
-        app.use(httpContext.middleware);
-        app.use(express.urlencoded({extended: true}));
-
-        const port = process.env.PORT || defaultPort;
-        app.listen(port, () => console.log(`Running on port ${port}`));
+        }).listen(port, () => console.log(`Running on port ${port}`));
     });
 })();
 

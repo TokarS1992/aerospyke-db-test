@@ -6,7 +6,7 @@ export interface UserModel {
 	address: string;
 	email: string;
 	birthDay: Date;
-	templates: string[];
+	// templates: string[];
 }
 
 const schema = new Schema<UserModel>({
@@ -26,11 +26,11 @@ const schema = new Schema<UserModel>({
 		type: 'String',
 		required: true,
 	},
-	templates: {
-		type: [String],
-		required: true,
-		default: [],
-	},
+	// templates: {
+	// 	type: [String],
+	// 	required: true,
+	// 	default: [],
+	// },
 });
 
 export const userModel = model('User', schema);

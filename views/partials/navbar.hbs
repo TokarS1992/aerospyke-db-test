@@ -1,9 +1,16 @@
-<nav class="blue darken-4">
-  <div class="nav-wrapper">
-    <a href="/" class="brand-logo">Templates</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/">Templates</a></li>
-      <li><a href="/users">Users</a></li>
+<nav class="nav d-flex flex-row justify-content-between px-4">
+    <a href="/">Templates</a>
+    <ul>
+      {{#each navBarMetadata as |navBar|}}
+        {{#if navBar.isActive}}
+          <li class="nav-item active">
+            <a href="{{navBar.path}}">{{navBar.name}}</a>
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a href="{{navBar.path}}">{{navBar.name}}</a>
+          </li>
+        {{/if}}
+      {{/each}}
     </ul>
-  </div>
 </nav>
