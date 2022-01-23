@@ -1,5 +1,4 @@
 import {Get, JsonController, Render} from 'routing-controllers';
-import 'reflect-metadata';
 import {userModel} from '../../db/models';
 import {UserTemplateData} from "../../entities/UserTemplateData";
 import {TemplateUtils} from "./utils";

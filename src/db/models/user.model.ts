@@ -9,7 +9,7 @@ export interface UserModel {
 	// templates: string[];
 }
 
-const schema = new Schema<UserModel>({
+export const userModel = model('User', new Schema<UserModel>({
 	firstName: {
 		type: 'String',
 		required: true,
@@ -31,6 +31,4 @@ const schema = new Schema<UserModel>({
 	// 	required: true,
 	// 	default: [],
 	// },
-});
-
-export const userModel = model('User', schema);
+}));

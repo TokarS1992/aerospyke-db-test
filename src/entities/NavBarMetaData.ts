@@ -1,6 +1,7 @@
 export enum ENavBar {
-	TEMPLATES = 'Template',
+	TODOS = 'Todos',
 	USERS = 'Users',
+	TEMPLATES = 'Templates',
 }
 
 interface NavBar {

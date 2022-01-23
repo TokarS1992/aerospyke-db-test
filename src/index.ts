@@ -12,38 +12,39 @@ import {expressServerOptions} from './server.config';
 
 dotenv.config();
 const app = express();
-const expressHbs = create({
-    defaultLayout: 'main',
-    extname: 'hbs'
-});
-
-app.engine('hbs', expressHbs.engine);
-app.set('view engine', 'hbs');
-app.set('views', 'views');
-
-app.use(bodyParser.json());
-app.use(httpContext.middleware);
-app.use(express.urlencoded({extended: true}));
 
 (async () => {
-    await start(() => {
-        const port = process.env.PORT || 3001;
-        useExpressServer<Express>(app, {
-            ...expressServerOptions,
-            controllers: [
-                controllers.TemplateControllerTmp,
-                controllers.UserControllerTmp,
-                controllers.UserControllerJson,
-            ],
-            middlewares: [
-                middlewares.LogBeforeMiddleware,
-                middlewares.LogAfterMiddleware,
-                middlewares.GlobalErrorMiddleware,
-            ],
-            interceptors: [
-                interceptors.GlobalInterceptor,
-            ],
-        }).listen(port, () => console.log(`Running on port ${port}`));
+    await start();
+    const port = process.env.PORT || 3001;
+    const expressHbs = create({
+        defaultLayout: 'main',
+        extname: 'hbs'
     });
+
+    app.engine('hbs', expressHbs.engine);
+    app.set('view engine', 'hbs');
+    app.set('views', 'views');
+
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json());
+    // app.use(httpContext.middleware);
+
+    useExpressServer<Express>(app, {
+        ...expressServerOptions,
+        controllers: [
+            controllers.TemplateControllerTmp,
+            controllers.UserControllerTmp,
+            controllers.UserControllerJson,
+            controllers.TodoControllerTmp,
+        ],
+        middlewares: [
+            middlewares.LogBeforeMiddleware,
+            middlewares.LogAfterMiddleware,
+            middlewares.GlobalErrorMiddleware,
+        ],
+        interceptors: [
+            interceptors.GlobalInterceptor,
+        ],
+    }).listen(port, () => console.log(`Running on port ${port}`));
 })();
 

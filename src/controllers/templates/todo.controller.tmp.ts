@@ -1,7 +1,22 @@
-import {Get, JsonController} from "routing-controllers";
+import {Get, JsonController, Render} from "routing-controllers";
+import {TemplateUtils} from "./utils";
+import {ENavBar} from "../../entities/NavBarMetaData";
+import {todoModel} from "../../db/models";
+import {TodoTemplateData} from "../../entities/TodoTemplateData";
 
 @JsonController()
 export class TodoControllerTmp {
-	// @Get('/todos')
+	@Get('/')
+  @Render('pages/todos.hbs')
+  public async getIndexTmp(): Promise<TodoTemplateData> {
+    const todos = await todoModel.find({});
+    const navBarMetadata = TemplateUtils.setActiveByName(ENavBar.TODOS);
+		console.log(todos);
 
+		return {
+      title: ENavBar.TODOS,
+      todos,
+      navBarMetadata,
+    };
+  }
 }

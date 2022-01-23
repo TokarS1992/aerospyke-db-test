@@ -6,7 +6,7 @@ export interface TemplateModel {
 	isValid: boolean;
 }
 
-const schema = new Schema<TemplateModel>({
+export const templateModel = model('Template', new Schema<TemplateModel>({
 	text: {
 		type: 'String',
 		required: true,
@@ -17,6 +17,4 @@ const schema = new Schema<TemplateModel>({
 	isValid: {
 		type: 'Boolean'
 	},
-});
-
-export const templateModel = model('Template', schema);
+}));

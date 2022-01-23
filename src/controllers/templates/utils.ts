@@ -5,7 +5,7 @@ export class TemplateUtils {
 		return [
 			{
 				isActive: false,
-				name: ENavBar.TEMPLATES,
+				name: ENavBar.TODOS,
 				path: '/',
 			},
 			{
