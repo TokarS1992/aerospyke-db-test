@@ -1,5 +1,6 @@
 import express, { Express } from 'express';
 import dotenv from 'dotenv';
+import { start } from './db/db.connection';
 import { useExpressServer } from 'routing-controllers';
 import httpContext from 'express-http-context';
 import * as controllers from './controllers';
@@ -26,6 +27,12 @@ useExpressServer(app, {
     ],
     defaultErrorHandler: false,
 });
+
 const port = process.env.PORT || defaultPort;
 
-app.listen(port, () => console.log(`Running on port ${port}`));
+(async () => {
+    await start(() => {
+        app.listen(port, () => console.log(`Running on port ${port}`))
+    });
+})();
+
