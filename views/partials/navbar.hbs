@@ -1,16 +1,18 @@
-<nav class="nav d-flex flex-row justify-content-between px-4">
-    <a href="/">Todos</a>
-    <ul>
-      {{#each navBarMetadata as |navBar|}}
-        {{#if navBar.isActive}}
-          <li class="nav-item active">
-            <a href="{{navBar.path}}">{{navBar.name}}</a>
-          </li>
-        {{else}}
-          <li class="nav-item">
-            <a href="{{navBar.path}}">{{navBar.name}}</a>
-          </li>
-        {{/if}}
-      {{/each}}
-    </ul>
+<nav class="blue darken-4" style="padding: 0 10px;">
+    <div class="nav-wrapper">
+        <a href="/">Todos</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{#each navBarMetadata as |navBar|}}
+            {{#if navBar.isActive}}
+              <li class="active">
+                <a href="{{navBar.path}}">{{navBar.name}}</a>
+              </li>
+            {{else}}
+              <li>
+                <a href="{{navBar.path}}">{{navBar.name}}</a>
+              </li>
+            {{/if}}
+          {{/each}}
+        </ul>
+    </div>
 </nav>

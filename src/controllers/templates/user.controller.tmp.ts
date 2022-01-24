@@ -7,15 +7,14 @@ import {ENavBar} from "../../entities/NavBarMetaData";
 @JsonController()
 export class UserControllerTmp {
   @Get('/users')
-  @Render('pages/users.hbs')
+  @Render('pages/users')
   public async getUsersTmp(): Promise<UserTemplateData> {
     const users = await userModel.find({});
     const navBarMetadata = TemplateUtils.setActiveByName(ENavBar.USERS);
-    console.log(Array.isArray(users));
 
     return {
       title: ENavBar.USERS,
-      users: users,
+      users,
       navBarMetadata,
     };
   }

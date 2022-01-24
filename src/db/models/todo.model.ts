@@ -1,21 +1,15 @@
 import {Schema, model} from 'mongoose';
 
 export interface TodoModel {
-	taskName: string;
+	title: string;
 	completed: boolean;
-	finished: boolean;
 }
 
 export const todoModel = model('Todo', new Schema<TodoModel>({
-	taskName: {
+	title: {
 		type: 'String',
-		required: true,
 	},
 	completed: {
-		type: 'Boolean',
-		default: false,
-	},
-	finished: {
 		type: 'Boolean',
 		default: false,
 	},

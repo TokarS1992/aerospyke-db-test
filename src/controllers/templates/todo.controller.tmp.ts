@@ -7,11 +7,10 @@ import {TodoTemplateData} from "../../entities/TodoTemplateData";
 @JsonController()
 export class TodoControllerTmp {
 	@Get('/')
-  @Render('pages/todos.hbs')
+  @Render('pages/todos')
   public async getIndexTmp(): Promise<TodoTemplateData> {
     const todos = await todoModel.find({});
     const navBarMetadata = TemplateUtils.setActiveByName(ENavBar.TODOS);
-		console.log(todos);
 
 		return {
       title: ENavBar.TODOS,

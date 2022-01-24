@@ -5,25 +5,24 @@ export interface UserModel {
 	lastName: string;
 	address: string;
 	email: string;
-	birthDay: Date;
 	// templates: string[];
 }
 
 export const userModel = model('User', new Schema<UserModel>({
 	firstName: {
-		type: 'String',
+		type: String,
 		required: true,
 	},
 	lastName: {
-		type: 'String',
+		type: String,
 		required: false,
 	},
 	address: {
-		type: 'String',
+		type: String,
 		required: true,
 	},
 	email: {
-		type: 'String',
+		type: String,
 		required: true,
 	},
 	// templates: {

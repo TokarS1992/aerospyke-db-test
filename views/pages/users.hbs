@@ -1,7 +1,6 @@
 <div class="container">
     <h3>Users</h3>
 
-    {{#if users.length}}
     {{#each users as |user|}}
         <div class="card">
             <div class="card-body">
@@ -13,7 +12,4 @@
             </div>
         </div>
     {{/each}}
-    {{else}}
-    <h1 class="h1">No user created</h1>
-    {{/if}}
 </div>
